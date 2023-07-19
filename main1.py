@@ -1,4 +1,3 @@
-
 import requests
 import json
 import pprint
@@ -56,21 +55,17 @@ if response.status_code == 200:
     # pprint.pprint(data)
 
     stations = data['stations']
-    # line = data['line']
+    
     total_time = data['total_time']
     fare = data['fare']
     line = (data['route'][0]['line'])
     line_number = (data['route'][0]['line_no'])
     towards_station = (data['route'][0]['towards_station'])
-    # print(f'To station is: ',toStn
-    # print("Towards Station:", towards_station)
-    # print(
-    #     f"No. of stations: {stations}, Total time: {total_time} Line: {line}, Line Number:{line_number}.")
-    # print("Fare is:", fare)
+    
     print(
         f"No. of stations: {stations}, Total time: {total_time}, Total Fare: {fare} .")
 
-    # akhilesh_code'
+    
     # data['route'][0]['start']
     # Region Displaying boarding station info
     input_boarding_info_askuser = input(
@@ -89,16 +84,18 @@ if response.status_code == 200:
         input_interchange_info_askuser = input(
             'Do you want interchange station information: (yes/no) ? ')  # Displaying interchange station information
         if input_interchange_info_askuser.lower() == 'yes':
-            output_interchange_info = "No of Interchange stations are: " + \
-                str(len(data['route'])-1)
-            interchange_list_stationsname = ''
+            
+            outputStations=[]
+            interchange_list_stationsname = "" 
             for i in range(1, len(data['route'])):
-                interchange_list_stationsname = interchange_list_stationsname + \
-                    data['route'][i]['start'] + \
-                    ', '
-            output_interchange_info = output_interchange_info + \
-                ", Namely: " + interchange_list_stationsname
-            print(output_interchange_info)
+                interchange_list_stationsname = data['route'][i]['start'] 
+                outputStations.append(interchange_list_stationsname)
+
+            output_interchange_info = "No of Interchange stations are: " + \
+                str(len(data['route'])-1)+'\n'+'Namely:'
+            print(output_interchange_info, outputStations)
+            
+            # print(outputStations)
         elif input_interchange_info_askuser.lower() == 'no':
             pass
         else:
