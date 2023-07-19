@@ -84,6 +84,7 @@ if response.status_code == 200:
         print('Did not match your response')
     # end region
 
+
     if int(len(data['route'])) > 1:
         input_interchange_info_askuser = input(
             'Do you want interchange station information: (yes/no) ? ')  # Displaying interchange station information
@@ -92,9 +93,9 @@ if response.status_code == 200:
                 str(len(data['route'])-1)
             interchange_list_stationsname = ''
             for i in range(1, len(data['route'])):
-                interchange_list_stationsname = interchange_list_stationsname +\
+                interchange_list_stationsname = interchange_list_stationsname + \
                     data['route'][i]['start'] + \
-                    ', ' if i < len(data['route'])-1 else ''
+                    ', '
             output_interchange_info = output_interchange_info + \
                 ", Namely: " + interchange_list_stationsname
             print(output_interchange_info)
